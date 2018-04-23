@@ -29,13 +29,13 @@ void setup()
 
 	Serial.begin(115200);
 
-	  // Setup callbacks for SerialCommand commands
-  sCmd.addCommand("P",   set_pwm);          // Turns LED on
-  sCmd.addCommand("D",   set_dir);         // Turns LED off
-  sCmd.addCommand("I",   set_inv);        // Echos the string argument back
-  sCmd.addCommand("B",   set_brk);  // Converts two arguments to integers and echos them back
+// Setup callbacks for SerialCommand commands, please read help in help() function
+  sCmd.addCommand("P",   set_pwm)
+  sCmd.addCommand("D",   set_dir);         
+  sCmd.addCommand("I",   set_inv);
+  sCmd.addCommand("B",   set_brk);
   sCmd.addCommand("help",   help);
-  sCmd.setDefaultHandler(unrecognized);      // Handler for command that isn't matched
+  sCmd.setDefaultHandler(unrecognized);  // Handler for command that isn't matched
   Serial.println("Ready");
   Serial.println("");
 
@@ -45,7 +45,7 @@ void help() {
 	Serial.println("--- Help text ---");
 	Serial.println("P X Y	-> set PWM of controller X to Y, from 0 to 100 (%)");
 	Serial.println("D X Y	-> set direction of controller X to Y, 1 or 0");
-	Serial.println("I X Y	-> invert direction setting of controller X to Y, 0 or 1");
+	Serial.println("I X Y	-> reverse direction setting of controller X to Y, 0 or 1");
 	Serial.println("B	-> Break to ground");
 	Serial.println("help	-> Display help text.");
 	Serial.println("");
@@ -104,6 +104,7 @@ void set_dir() {
 	apply();
 }
 
+// Reverse direction
 void set_inv() {
 	char *arg;
 	arg = sCmd.next();
@@ -120,7 +121,9 @@ void set_inv() {
 	apply();
 }
 
+// Applies changes from the variables to the pins output
 void apply() {
+	// Prints a summary of the variables state
 	Serial.println("P1	D1	I1:");
 	Serial.print(v1); Serial.print("	");
 	Serial.print(d1); Serial.print("	");
@@ -157,7 +160,7 @@ void apply() {
 	analogWrite(PWM2, v2);	
 }
 
-void loop() {
-
+// Only listens for commands
+void loop() { 
 	sCmd.readSerial();
 }
