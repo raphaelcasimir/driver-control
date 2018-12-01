@@ -10,7 +10,9 @@ Download it and select "Add .zip library" in the sketch menu to install it.
 
 ![zip-library-install](https://www.arduino.cc/en/uploads/Guide/ImportLibraryFromZIPFile.png)
 
-A good serial monitor is **cutecom** (`sudo apt install cutecom`). On Ubuntu do this to access serial ports if you have issues:
+A good serial monitor is **cutecom** (`sudo apt install cutecom`).
+
+On Ubuntu do this to access serial ports if you have issues:
 ```bash
 sudo adduser $USER dialout
 ```
