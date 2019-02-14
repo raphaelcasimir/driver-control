@@ -1,3 +1,4 @@
+// Author: Raphaël Casimir | mail@raph.io
 #include <SerialCommand.h>
 
 #define PWM1 13
